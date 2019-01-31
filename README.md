@@ -18,7 +18,12 @@ const studentRoutes = require("./routes/student");
 app.use(studentRoutes);
 
 app.listen(3000, () => console.log("Server started"));
-Nous créons maintenant un fichier ./routes/student.js qui contiendra les routes que nous avions l'habitude de définir dans le fichier index.js
+```
+
+Nous créons maintenant un fichier ./routes/student.js qui contiendra les routes que nous avions l'habitude de définir dans
+le fichier index.js
+
+```javascript
 const express = require("express");
 const router = express.Router();
 

@@ -10,67 +10,26 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
-const Department = mongoose.model("Department", {
-  title: {
-    type: String,
-    minlength: 3,
-    maxlength: 20,
-    required: true
-  }
-});
-
-const Category = mongoose.model("Category", {
-  title: {
-    type: String,
-    minlength: 5,
-    maxlength: 15,
-    required: true
-  },
-  description: {
-    type: String
-  },
-  department: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Department"
-  }
-});
-
-const Product = mongoose.model("Product", {
-  title: {
-    type: String,
-    minlength: 5,
-    maxlength: 25,
-    required: true
-  },
-  description: {
-    type: String,
-    minlength: 0,
-    maxlength: 500,
-    default: "",
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true,
-    default: 0,
-    min: 0
-  },
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category"
-  }
-});
+const Department = require("./models/department");
+const Category = require("./models/category");
+const Product = require("./models/product");
 
 app.post("/department/create", async (req, res) => {
   try {
-    // Notre sauvegarde
-    const department = new Department({
-      title: req.body.title
-    });
-
-    await department.save();
-
-    res.json(department);
+    for (let i = 0; i < req.body.length; i++) {
+      const department = await Department.findOne({
+        title: req.body[i].title
+      });
+      if (department === null) {
+        const newDepartment = new Department({
+          title: req.body[i].title
+        });
+        await newDepartment.save();
+      } else {
+        console.log(`Departement ${req.body[i].title} already existing.`);
+      }
+    }
+    res.json({ message: "Departments created" });
   } catch (error) {
     res.status(400).json({
       message: error.message
