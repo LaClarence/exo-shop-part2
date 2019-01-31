@@ -1,0 +1,19 @@
+{
+  "name": "exo-shop-part2",
+  "version": "1.0.0",
+  "description": "Continue online shop exercice from live correction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaClarence/exo-shop-part2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LaClarence/exo-shop-part2/issues"
+  },
+  "homepage": "https://github.com/LaClarence/exo-shop-part2#readme"
+}
